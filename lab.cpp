@@ -1,7 +1,6 @@
 #include<iostream>
 #include<vector>
 #include<queue>
-#include<map>
 
 struct Point {
     int x;
@@ -11,7 +10,6 @@ struct Point {
 struct Stage {
     int row = 0;
     int column = 0;
-    int size = 0;
     int** map;
     std::vector<Point> free;
     std::vector<Point> virus;
@@ -30,7 +28,6 @@ int main() {
 
     std::cin >> stage.row >> stage.column;
 
-    stage.size = stage.row * stage.column;
     stage.map = new int*[stage.row];
     canvas = new int*[stage.row];
     for(int i=0; i<stage.row; i++) {
@@ -58,7 +55,7 @@ int main() {
         }
     }
 
-    int flag[stage.size];
+    int flag[stage.row * stage.column];
     combi(stage, stage.free.size(), 3, flag, canvas);
 
     std::cout << max << std::endl;
@@ -140,7 +137,6 @@ int combi(const Stage& stage, int n, int r, int* flag, int**& canvas) {
 }
 
 int dispute(const Stage& stage, int**& canvas, std::vector<Point> map) {
-    
     int zero, count = 0;
 
     for(auto& wall : map) {
@@ -162,6 +158,4 @@ int dispute(const Stage& stage, int**& canvas, std::vector<Point> map) {
     for(auto& free : stage.free) {
         canvas[free.y][free.x] = 0;
     }
-
-    
 }
