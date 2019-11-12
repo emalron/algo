@@ -36,8 +36,6 @@ int hanoi(State state, void (*fp)(State), int& cnt) {
         fp(state);
         cnt++;
         hanoi(s2, fp, cnt);
-    }
-}
 
 void print(State state) {
     std::cout << "Disk " << state.num << " is moved " << state.from << " -> " << state.to << std::endl;

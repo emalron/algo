@@ -3,19 +3,22 @@
 using namespace std;
 
 // 템플릿 클래스라고 정의 해준다.
+template<typename T> class CNode;
+template <typename T> class Citorater;
+template <typename T> class CLinkdeList;
+
 template <typename T>
 class CNode
 {
    // CLinkdeList클래스에서 이 클래스를 쓰게 해준다.
-   template <typename T>
-   friend class CLinkdeList;
-   template <typename T>
-   friend class Citerater;
+   friend class CLinkdeList<T>;
+   friend class Citorater<T>;
 private:
    CNode()
    {
       m_pPrev = nullptr;
       m_pNext = nullptr;
+
    }
 
    ~CNode()
@@ -35,8 +38,8 @@ private:
 template <typename T>
 class Citorater
 {
-   template <typename T>
-   friend class CNode;
+   friend class CNode<T>;
+   friend class CLinkdeList<T>;
 
 public:
    Citorater()
